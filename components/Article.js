@@ -86,6 +86,22 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'New Article',
+    date: 'August 4st, 2021',
+    firstParagraph: `Hodor hodor HODOR! Hodor hodor - hodor, hodor. Hodor hodor... Hodor hodor hodor; hodor hodor. Hodor hodor hodor, hodor, hodor
+          hodor. Hodor, hodor. Hodor. Hodor, hodor - hodor... Hodor hodor hodor; hodor HODOR hodor, hodor hodor?! Hodor hodor, hodor.
+          Hodor hodor hodor hodor hodor! Hodor hodor - HODOR hodor, hodor hodor hodor hodor hodor; hodor hodor? `,
+
+    secondParagraph: `Hodor, hodor. Hodor. Hodor, hodor, hodor. Hodor hodor, hodor. Hodor hodor, hodor, hodor hodor. Hodor! Hodor hodor, hodor;
+          hodor hodor hodor? Hodor, hodor. Hodor. Hodor, hodor - HODOR hodor, hodor hodor hodor! Hodor, hodor. Hodor. Hodor, HODOR
+          hodor, hodor hodor, hodor, hodor hodor. Hodor hodor - hodor - hodor... Hodor hodor hodor hodor hodor hodor hodor?! Hodor
+          hodor - hodor hodor hodor. Hodor. Hodor hodor... Hodor hodor hodor hodor hodor? `,
+
+    thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
+          Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
+          Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
   }
 ];
 
@@ -114,3 +130,49 @@ const data = [
   Step 5: Try adding new article object to the data array. Make sure it is in the same format as the others.
   Refresh the page to see the new article.
 */
+const articles = document.querySelector('.articles');
+function articleMaker(title, date, firstParagraph, secondParagraph, thirdParagraph){
+  const article = document.createElement('div');
+  const articleH2= document.createElement('h2');
+  const datee= document.createElement('p');
+  const p1= document.createElement('p');
+  const p2= document.createElement('p');
+  const p3= document.createElement('p');
+  const span = document.createElement('span');
+
+  article.appendChild(articleH2);
+  article.appendChild(datee);
+  article.appendChild(p1);
+  article.appendChild(p2);
+  article.appendChild(p3);
+  article.appendChild(span);
+
+  article.classList.add('article');
+  datee.classList.add('date');
+  span.classList.add('expandButton');
+
+  articleH2.textContent = title;
+  datee.textContent = date;
+  p1.textContent = firstParagraph;
+  p2.textContent = secondParagraph;
+  p3.textContent = thirdParagraph;
+  span.textContent = '\u25bc';
+
+  span.addEventListener('click', () =>{
+    article.classList.toggle('article-open');
+  });
+  return article;
+}
+
+
+// Step 4: Outside your function now, loop over the data. At each iteration you'll use your component
+// to create a div.article element and append it to the DOM inside div.articles (see index.html).
+
+// Step 5: Try adding new article object to the data array. Make sure it is in the same format as the others.
+// Refresh the page to see the new article.
+
+
+data.forEach((artObj) =>{
+  const dataComponent = articleMaker(artObj.title, artObj.date,artObj.firstParagraph,artObj.secondParagraph,artObj.thirdParagraph);
+  articles.appendChild(dataComponent);
+})
